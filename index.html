@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pc和手机端的图片上传处理</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+</head>
+<body>
+	<p>选择:</p>
+	<p><input type="file" accept="image/*" id="upload" name="upload"></p>
+	<div><button id="surebtn">确定上传</button></div>
+	<p>图片预览：</p>
+	<p id="preview"></p>
+	<script type="text/javascript">
+
+		var upload = document.getElementById('upload'),
+			preview = document.getElementById('preview'),
+			surebtn = document.getElementById('surebtn'),
+			imgurl = '';
+
+		upload.addEventListener('change',handleFile,false);
+		surebtn.addEventListener('click',upLoadFile,false);
+
+		function handleFile(){
+			window.URL = window.URL || window.webkitURL;
+			var sUserAgent= navigator.userAgent.toLowerCase();
+			var selected_file = upload.files[0];
+
+			if(sUserAgent.match(/android/i) == "android"){
+		    	var img = new Image();
+			    img.src = window.URL.createObjectURL(selected_file);
+			    preview.innerHTML = '';
+			    preview.appendChild(img);
+
+
+			    var reader = new FileReader();
+			    reader.onload = function(e) { imgurl = e.target.result; };
+			    reader.readAsDataURL(selected_file);
+
+			}else{
+
+				//判断文件类型是否为图片
+				 var imageType = /image.*/;
+	    
+			    if (!selected_file.type.match(imageType)) {
+			      return false;
+			    }
+
+			    var img = document.createElement('img');
+			    img.file = selected_file;
+			    preview.innerHTML = '';
+			    preview.appendChild(img);
+
+			    img.onload = function(){
+	    			imgurl = img.src;
+			    }
+
+			    var reader = new FileReader();
+			    reader.onload = function(e) { img.src = e.target.result; };
+			    reader.readAsDataURL(selected_file);
+			}
+		}
+
+		function upLoadFile(){
+			var start = imgurl.indexOf(',')+1;
+			dataurl = imgurl.substr(start);
+
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open('post','todo.php',true);
+			xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded;charset=utf-8');
+			xmlhttp.setRequestHeader('X_Requested-With','XMLHttpRequest');
+			xmlhttp.send('dataurl='+encodeURIComponent(dataurl));
+
+			xmlhttp.onreadystatechange=function(){
+				if (xmlhttp.readyState==4 && xmlhttp.status==200){
+					console.log(xmlhttp.responseText)
+				}
+			}
+		}
+
+	</script>
+</body>
+</html>
+
