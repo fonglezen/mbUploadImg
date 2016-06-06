@@ -10,7 +10,7 @@
 			maxWidth : 1000,
 			maxHeight : 1000,
 			imgHandle:function(src){
-				preview.innerHTML = '<img src="'+ src +'" />';
+				preview.innerHTML = '&lt;img src="'+ src +'" /&lt;';
 			}
 		})
 	</code>
