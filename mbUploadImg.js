@@ -7,7 +7,6 @@
 		
 
 		init:function(obj){
-			var _this = this;
 			for(var v in obj){
 				this[v] = obj[v];
 			}
@@ -38,7 +37,6 @@
 			    var reader = new FileReader();
 			    reader.onload = function(e) {
 			    	_this.imgurl = e.target.result;
-			    	console.log('_this.changeSize = ' + _this.changeSize)
 			    	if(_this.changeSize){
 			    		_this.changeSizeHandle(_this.imgurl);
 			    	}else{
@@ -48,11 +46,9 @@
 			    reader.readAsDataURL(selected_file);
 
 			}else{
-				// console.log('xxx')
 			    var reader = new FileReader();
 			    reader.onload = function(e) {
 			    	_this.imgurl = e.target.result;
-			    	console.log('_this.changeSize = ' + _this.changeSize)
 			    	if(_this.changeSize){
 			    		_this.changeSizeHandle(_this.imgurl);
 			    	}else{
@@ -88,7 +84,6 @@
 						qlt = _t.maxHeight / iHeight;
 					}
 				}
-				// console.log(img)
 				var can = document.createElement('canvas');
 				var ctx = can.getContext('2d');
 				can.width = nWidth;
