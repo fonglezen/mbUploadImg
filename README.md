@@ -1,5 +1,20 @@
 # mbUploadImg
-使用于手机（ios和android端）和pc端的图片缩略图显示
+使用于手机（ios和android端）和pc端的图片缩略图显示，用HTML5 FILE 实现。
 
 
-由于存在android手机某些浏览器对file api 上传的图片的兼容性问题，所以写了兼容的方法来处理这个问题。
+##使用demo
+<code type="javascript">
+	mbUploadImg.init({
+		changeSize:true,
+		maxWidth : 1000,
+		maxHeight : 1000,
+		imgHandle:function(src){
+			console.log(src)
+			preview.innerHTML = '<img src="'+ src +'" />';
+		}
+	})
+</code>
+
+<p>changeSize	是否改变图片大小</p>
+<p>maxWidth		图片最大宽度，仅当changeSize为true的时候有效</p>
+<p>maxHeight	图片最大高度，仅当changeSize为true的时候有效</p>
