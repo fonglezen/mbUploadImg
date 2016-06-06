@@ -3,17 +3,20 @@
 
 
 ##使用demo
-<code type="javascript">
-	mbUploadImg.init({
-		changeSize:true,
-		maxWidth : 1000,
-		maxHeight : 1000,
-		imgHandle:function(src){
-			console.log(src)
-			preview.innerHTML = '<img src="'+ src +'" />';
-		}
-	})
-</code>
+<pre>
+	<code>
+		mbUploadImg.init({
+			changeSize:true,
+			maxWidth : 1000,
+			maxHeight : 1000,
+			imgHandle:function(src){
+				console.log(src)
+				preview.innerHTML = '<img src="'+ src +'" />';
+			}
+		})
+	</code>
+</pre>
+
 
 <p>changeSize	是否改变图片大小</p>
 <p>maxWidth		图片最大宽度，仅当changeSize为true的时候有效</p>
