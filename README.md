@@ -1,8 +1,8 @@
 # mbUploadImg
-使用于手机（ios和android端）和pc端的图片缩略图显示，用HTML5 FILE 实现。
+适用于手机（ios和android端）和pc端的图片缩略图显示，用HTML5 FILE 实现。
 
 
-##使用demo
+##使用方法demo
 <pre>
 	<code>
 		mbUploadImg.init({
